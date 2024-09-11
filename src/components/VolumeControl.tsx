@@ -1,33 +1,10 @@
 import volumeSVG from "../assets/volume.svg";
 import muteSVG from "../assets/mute.svg";
-import { useState, ChangeEvent } from "react";
+import useVolumeControl from "../hooks/useVolumeControl";
 
 function VolumeControl() {
-  const [volume, setVolume] = useState<number>(75);
-  const [muteStatus, setMuteStatus] = useState<boolean>(false);
-  const [lastVolume, setLastVolume] = useState<number>(75);
-
-  function handleVolumeChange(event: ChangeEvent<HTMLInputElement>) {
-    const newVolume = parseInt(event.target.value);
-
-    if (newVolume === 0) {
-      setMuteStatus(true);
-    } else {
-      setMuteStatus(false);
-      setVolume(newVolume);
-    }
-  }
-
-  function toggleMute() {
-    if (muteStatus) {
-      setMuteStatus(false);
-      setVolume(lastVolume);
-    } else {
-      setLastVolume(volume);
-      setMuteStatus(true);
-      setVolume(0);
-    }
-  }
+  const { volume, muteStatus, handleVolumeChange, toggleMute } =
+    useVolumeControl();
 
   return (
     <div className="flex items-center justify-center">
