@@ -1,6 +1,14 @@
 import React from "react";
 
-function PlayListItem({ title, artist, length, onClick }) {
+// Define the types for the props
+interface PlayListItemProps {
+  title: string;
+  artist: string;
+  length: string;
+  onClick: () => void;
+}
+
+function PlayListItem({ title, artist, length, onClick }: PlayListItemProps) {
   return (
     <div
       className="mb-2 flex w-full cursor-pointer justify-between pr-3 font-medium transition-colors hover:bg-gray-200"
